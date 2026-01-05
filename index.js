@@ -28,7 +28,7 @@ const injectedScript = `function() {
     var maxHeight = Math.max( body.scrollHeight, body.offsetHeight, html.offsetHeight );
 
     console.log('postSize maxHeight', maxHeight)
-    window.ReactNativeWebView.postMessage(maxHeight);
+    window.ReactNativeWebView.postMessage(maxHeight.toString());
   }
 
   var postSizeTimeout;
@@ -94,7 +94,7 @@ export default class MyWebView extends Component {
     const injectedJavaScript = '(' + String(injectedScript) + ')();';
 
     let style = !!this.props.noWidth ? []: [{width: _w}]
-    style = style.concat([this.props.style, {height: _h}]); 
+    style = style.concat([this.props.style, {flex: 0, height: _h}]); 
 
     return (
       <WebView
